@@ -103,10 +103,18 @@ class Simulation:
                 self.viewer.position.z += .6 
             elif keystate[K_r]:
                 self.viewer.position.z -= .6
-            if keystate[K_t]:
-                self.viewer.direction.x += .2 
+            elif keystate[K_t]:
+                self.viewer.direction.rotate_around_x(5)
             elif keystate[K_y]:
-                self.viewer.direction.x -= .2
+                self.viewer.direction.rotate_around_x(-5)
+            elif keystate[K_g]:
+                self.viewer.direction.rotate_around_y(5)
+            elif keystate[K_h]:
+                self.viewer.direction.rotate_around_y(-5)
+            elif keystate[K_b]:
+                self.viewer.direction.rotate_around_z(5)
+            elif keystate[K_n]:
+                self.viewer.direction.rotate_around_z(-5)
             elif keystate[K_q]:
                 self.angleX +=1 
             elif keystate[K_w]:
@@ -150,6 +158,8 @@ class Simulation:
             self.display_text("obj-angle-z : %d" % self.angleZ, row=5)    
 
             self.display_text("viewer-dir-x : %f" % self.viewer.direction.x, row=6)    
+            self.display_text("viewer-dir-y : %f" % self.viewer.direction.y, row=7)    
+            self.display_text("viewer-dir-z : %f" % self.viewer.direction.z, row=8)    
 
             if viewer_rotate and not pause:
                 self.angleX += 1

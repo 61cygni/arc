@@ -119,8 +119,16 @@ class spiral:
     def displayXYZ(self, angleX, angleY, angleZ, viewer, screen):        
         """ Display to screen at rotation defined by XYZ """
         for star in self.stars:
-            # Rotate the point around X axis, then around Y axis, and finally around Z axis.
+        
+            # First we rotate the galaxy in the galaxy coords. 
             s = star.rotateX(angleX).rotateY(angleY).rotateZ(angleZ)
+
+            # Now rotate the galaxy according to the viewer
+            # Currently doesn't work
+            # s = s.rotateXaroundViewer(viewer)
+            # s = s.rotateYaroundViewer(viewer)
+            # s = s.rotateZaroundViewer(viewer)
+
             # Transform the point from 3D to 2D
             p = s.project(screen.get_width(), screen.get_height(), 
                           self.pos, 256, viewer)

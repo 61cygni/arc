@@ -50,6 +50,9 @@ class axis:
         end = end.project(screen.get_width(), screen.get_height(), 
                           self.pos, 256, viewer)
 
+        if not start or not end:
+            return
+
         pygame.draw.line(screen, (0,255,0),
                          (start.v.x, start.v.y),
                          (end.v.x, end.v.y), 3)
@@ -61,6 +64,9 @@ class axis:
         end = self.z_end.rotateX(angleX).rotateY(angleY).rotateZ(angleZ)
         end = end.project(screen.get_width(), screen.get_height(), 
                           self.pos, 256, viewer)
+
+        if not start or not end:
+            return
 
         pygame.draw.line(screen, (0,0,255),
                          (start.v.x, start.v.y),

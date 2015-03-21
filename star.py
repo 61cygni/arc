@@ -18,7 +18,19 @@ class star3D:
     def rotateX(self, angle):
         """ Rotate the star around the X axis by the given angle in degrees. """
         return star3D(self.v.rotated_around_x(angle), self.color, self.size)
+
+    def rotateXaroundViewer(self, viewer):
+        v = self.v - viewer.position
+        return star3D(v.rotated_around_x(viewer.direction.get_angle_around_x()), self.color,self.size)
  
+    def rotateYaroundViewer(self, viewer):
+        v = self.v - viewer.position
+        return star3D(v.rotated_around_y(viewer.direction.get_angle_around_y()), self.color,self.size)
+ 
+    def rotateZaroundViewer(self, viewer):
+        v = self.v - viewer.position
+        return star3D(v.rotated_around_y(viewer.direction.get_angle_around_z()), self.color,self.size)
+
     def rotateY(self, angle):
         """ Rotate the star around the Y axis by the given angle in degrees. """
         return star3D(self.v.rotated_around_y(angle), self.color, self.size)
@@ -37,10 +49,10 @@ class star3D:
 
         # Note the the viewer is viewer_d along the z axes and looking
         # back (0,0,-1) therefore we use S+V to find the distance
-        dist = self.v - viewer.position # distance from star to viewer
+        #dist = self.v - viewer.position # distance from star to viewer
 
-        if dist.z > 0:
-            return None
+        #if dist.z > 0:
+        #    return None
 
         if ((viewer.position.z - self.v.z) + galaxy_pos.z) == 0:
             factor = 0
