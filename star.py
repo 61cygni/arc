@@ -49,10 +49,10 @@ class star3D:
 
         # Note the the viewer is viewer_d along the z axes and looking
         # back (0,0,-1) therefore we use S+V to find the distance
-        #dist = self.v - viewer.position # distance from star to viewer
+        dist = self.v - viewer.position # distance from star to viewer
 
-        #if dist.z > 0:
-        #    return None
+        if dist.z > 0:
+            return None
 
         if ((viewer.position.z - self.v.z) + galaxy_pos.z) == 0:
             factor = 0
