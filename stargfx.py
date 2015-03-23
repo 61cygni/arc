@@ -20,7 +20,7 @@ class stargfx:
     def generate_star(self, size, color):
         s = pygame.Surface((64,64))
         s.set_colorkey((0,0,0))
-        s.set_alpha(175)
+        s.set_alpha(150)
 
         r = color[0]
         g = color[1]
@@ -37,7 +37,7 @@ class stargfx:
 
     def generate_row(self, color):
         cache = []
-        for i in range (1,8):
+        for i in [x * 0.05 for x in range(1, 72)] :
             cache.append(self.generate_star(i,color))
         return cache    
 

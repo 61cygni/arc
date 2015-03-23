@@ -124,6 +124,20 @@ class spiral:
         angle = (360 / self.arms) * int(random.random() * self.arms)
         return star.rotateZ(angle)
 
+    def calculate_star_size(self, star, viewer):
+        """ Calculate size of star to blit based on distance from viewer """
+
+        # caculate distance from viewer
+        distance = (star.v - viewer.position).get_length()
+
+        max_distance = uconfig.opts["scale-max-distance"]
+        max_size     = star.size
+
+        if distance > max_distance:
+            return 0
+
+        newsize = float(max_size) * (1. - (distance / max_distance))
+        return int(round(newsize))
 
     def displayXYZ(self, angleX, angleY, angleZ, viewer, screen):        
         """ Display to screen at rotation defined by XYZ """
@@ -147,7 +161,14 @@ class spiral:
             # draw to screen 
             #pygame.draw.circle(screen, p.color,(int(p.x), int(p.y)), p.size)
             if uconfig.opts["gauss-stars"]:
-                screen.blit(self.star_billboard[p.size], (int(p.v.x), int(p.v.y)), special_flags = pygame.BLEND_RGB_ADD )
+                if uconfig.opts["scale-stars"]:
+                    index = self.calculate_star_size(s, viewer)
+                else:
+                    index = p.size
+
+                screen.blit(self.star_billboard[index],
+                            (int(p.v.x), int(p.v.y)),
+                            special_flags = pygame.BLEND_RGB_ADD )
             else:
                 pygame.draw.circle(screen, p.color,(int(p.v.x), int(p.v.y)), p.size)
         # --

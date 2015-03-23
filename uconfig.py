@@ -12,13 +12,18 @@ opts_full = \
                        # numbers of stars
     "star-field" : 1,  # create a starfield outside of the galaxy(s)
 
-    "star-size-dist" : [0,0,0,0,0,0,1,1,1,2],
+    "scale-stars" : 0, #scale star size with distance
+    "scale-max-distance" : 1000, # distance at which a star is at the
+                                 # smallest size
+
+    "star-size-dist" : \
+        [2,2,4,4,8,8,16,32,64],
 
 
     "spiral-numstars" : 10000, # number of stars used to make up the
                               # spiral galaxy
     "spiral-fuzz" : 0.2,  # entropy to throw at spiral galaxy 
-    "spiral-diameter" : 500, # 
+    "spiral-diameter" : 200, # 
 
     "obj-axis-show" : 0, # show 3D axis with object
 
@@ -26,9 +31,10 @@ opts_full = \
 
     "viewer-x": 0,  # x position of the user 
     "viewer-y": 0,  # y position of the user
-    "viewer-z" : 800,
+    "viewer-z" : 400,
 
     "viewer-dir" : Vec3d.Vec3d(1,0,0),
+
 
     "obj-angle-x" : 0,
     "obj-angle-y" : 0,
