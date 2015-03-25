@@ -2,7 +2,8 @@
 
 Viewer of universe
 
-Track position, field of view, and direction of viewer
+Track position, field of view, direction and velocity of viewer
+
   
 """
 
@@ -13,9 +14,11 @@ from axis      import axis
 class uviewer:
 
     def __init__(self,screen_width, screen_height, position = Vec3d(0,0,0),
-                 direction = Vec3d(1,0,0)):
+                 direction = Vec3d(1,0,0), speed = 5):
+
         self.position  = position
         self.direction = direction
+        self.speed     = speed
 
 
 

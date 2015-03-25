@@ -170,7 +170,12 @@ class spiral:
                             (int(p.v.x), int(p.v.y)),
                             special_flags = pygame.BLEND_RGB_ADD )
             else:
-                pygame.draw.circle(screen, p.color,(int(p.v.x), int(p.v.y)), p.size)
+                if uconfig.opts["scale-stars"]:
+                    index = self.calculate_star_size(s, viewer)
+                    index = index 
+                else:
+                    index = p.size
+                pygame.draw.circle(screen, p.color,(int(p.v.x), int(p.v.y)), int(index))
         # --
         if uconfig.opts["obj-axis-show"]:
             self.axis.displayXYZ(angleX, angleY, angleZ, viewer, screen) 

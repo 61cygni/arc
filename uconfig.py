@@ -17,7 +17,7 @@ opts_full = \
                                  # smallest size
 
     "star-size-dist" : \
-        [2,2,4,4,8,8,16,32,64],
+        [2,2,3,3,4,4,5,5,8,8,12,12,14,14,16,16,18,18,20,20],
 
 
     "spiral-numstars" : 10000, # number of stars used to make up the
@@ -49,7 +49,11 @@ opts_realtime = \
                        # numbers of stars
     "star-field" : 0,  # create a starfield outside of the galaxy(s)
 
-    "star-size-dist" : [0,0,0,0,0,0,1,1,1,2],
+    "star-size-dist" : [0,0,0,0,0,0,1,1,1,2,2,2,3,3,4,4,5],
+
+    "scale-stars" : 1, #scale star size with distance
+    "scale-max-distance" : 100, # distance at which a star is at the
+                                 # smallest size
 
     "spiral-numstars" : 4000, # number of stars used to make up the
                               # spiral galaxy
