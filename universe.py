@@ -67,6 +67,52 @@ class Simulation:
         #image  = pygame.image.fromstring(bufstr,(1024,768),"RGBA")
         print("saving image")
         pygame.image.save(self.screen, "bob.jpg")
+
+    def handle_key_events(self, pause):
+        keystate = pygame.key.get_pressed()
+        if keystate[K_e]:
+            self.viewer.position.z += .6 
+        elif keystate[K_r]:
+            self.viewer.position.z -= .6
+        elif keystate[K_t]:
+            self.viewer.direction.rotate_around_x(5)
+        elif keystate[K_y]:
+            self.viewer.direction.rotate_around_x(-5)
+        elif keystate[K_g]:
+            self.viewer.direction.rotate_around_y(5)
+        elif keystate[K_h]:
+            self.viewer.direction.rotate_around_y(-5)
+        elif keystate[K_b]:
+            self.viewer.direction.rotate_around_z(5)
+        elif keystate[K_n]:
+            self.viewer.direction.rotate_around_z(-5)
+        elif keystate[K_q]:
+            self.angleX +=1 
+        elif keystate[K_w]:
+            self.angleX -=1 
+        elif keystate[K_a]:
+            self.angleY +=1 
+        elif keystate[K_c]:
+            self.create_image()
+        elif keystate[K_s]:
+            self.angleY -=1 
+        elif keystate[K_z]:
+            self.angleZ +=1 
+        elif keystate[K_x]:
+            self.angleZ -=1 
+        elif keystate[K_LEFT]:
+            self.viewer.position.x -= .6
+        elif keystate[K_RIGHT]:
+            self.viewer.position.x += .6
+        elif keystate[K_UP]:
+            self.viewer.position.y += .6
+        elif keystate[K_DOWN]:
+            self.viewer.position.y -= .6
+        elif keystate[K_p]:
+            pause = pause ^ 1 # toggle pause
+
+        return pause    
+
         
     def run(self):
         """ Main Loop """
@@ -96,52 +142,7 @@ class Simulation:
             self.viewer.displayXYZ(0, 0, 0, self.viewer, self.screen) 
 
 
-            #  Simple key handler to move towards and away from the galazy
-            #  using the "a" and "z" keys
-
-            keystate = pygame.key.get_pressed()
-            if keystate[K_e]:
-                self.viewer.position.z += .6 
-            elif keystate[K_r]:
-                self.viewer.position.z -= .6
-            elif keystate[K_t]:
-                self.viewer.direction.rotate_around_x(5)
-            elif keystate[K_y]:
-                self.viewer.direction.rotate_around_x(-5)
-            elif keystate[K_g]:
-                self.viewer.direction.rotate_around_y(5)
-            elif keystate[K_h]:
-                self.viewer.direction.rotate_around_y(-5)
-            elif keystate[K_b]:
-                self.viewer.direction.rotate_around_z(5)
-            elif keystate[K_n]:
-                self.viewer.direction.rotate_around_z(-5)
-            elif keystate[K_q]:
-                self.angleX +=1 
-            elif keystate[K_w]:
-                self.angleX -=1 
-            elif keystate[K_a]:
-                self.angleY +=1 
-            elif keystate[K_c]:
-                self.create_image()
-            elif keystate[K_s]:
-                self.angleY -=1 
-            elif keystate[K_z]:
-                self.angleZ +=1 
-            elif keystate[K_x]:
-                self.angleZ -=1 
-            elif keystate[K_LEFT]:
-                self.viewer.position.x -= .6
-            elif keystate[K_RIGHT]:
-                self.viewer.position.x += .6
-            elif keystate[K_UP]:
-                self.viewer.position.y += .6
-            elif keystate[K_DOWN]:
-                self.viewer.position.y -= .6
-            elif keystate[K_p]:
-                pause = pause ^ 1 # toggle pause
-
-
+            pause = self.handle_key_events(pause)
                                     
             #self.starfield.displayXYZ(self.angleX, self.angleY, self.angleZ,
             #                        self.viewer.position.x, self.viewer.position.y, self.viewer.position.z, self.screen) 
